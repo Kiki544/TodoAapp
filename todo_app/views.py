@@ -24,7 +24,7 @@ def loginuser(request):
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            return redirect("")
+            return redirect("/")
         else:
             return render(
                 request, "auth/login.html", context={"message": "Account not found"}
@@ -40,7 +40,7 @@ def signUp(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("")
+            return redirect("/")
 
     return render(request, "auth/signup.html", context={"form": form})
 
@@ -58,7 +58,7 @@ def createpost(request):
             result.author = request.user
             result.completed = False
             result.save()
-            return redirect("")
+            return redirect("/")
         print("firstname")
 
     return render(request, "createtodo.html", {"forms": form})
@@ -96,13 +96,13 @@ def logout_user(request):
 @login_required(login_url="/login")
 def delete_todo(request, pk):
     Todo.objects.get(pk=pk).delete()
-    return redirect("")
+    return redirect("/")
 
 
 @login_required(login_url="/login")
 def complete_todo(request, pk):
     Todo.objects.filter(pk=pk).update(completed=True)
-    return redirect("/home")
+    return redirect("/")
 
 
 # def goodbye(request):
