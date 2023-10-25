@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %} home {% endblock %}
+
+{% block body %}
+<h1>Welcome</h1>
+<p>{%for todo in todos%}</p>
+<p>{{todo.title}} by {{todo.author}}</p>
+{% if todo.author == request.user%}
+<a href="{% url 'deletetodo' todo.pk %}"> <button class="btn-del">Delete</button></a>
+<a href="{% url 'completetodo' todo.pk %}"> <button class="btn-col">Complete</button></a>
+<a href="{% url 'displayTodo' todo.pk %}"> <button class="btn-col">View</button></a>
+{% endif %}
+{% endfor %}
+{% endblock %}

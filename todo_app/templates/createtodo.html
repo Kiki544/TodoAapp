@@ -1,0 +1,16 @@
+{% extends 'base.html'%}
+{% block title%} CREATETODO {% endblock %}
+
+{% block body%}
+<form method="post">
+    {%csrf_token%} <!-- /*#for security purposes*/ -->
+    {{forms}}
+    <!-- <label for="">first name</label>
+    <input name="firstname">
+    <label for="">last name</label>
+    <input name="lastname"> -->
+    <button type="submit">submit</button>
+
+
+</form>
+{% endblock %}
